@@ -9,7 +9,7 @@ Things to do:
 - Coin Acceptor
 - Scores/Deposited Money database
 - User Auth (NFC)
-- WebGui based scoreboard.
+- Epic Minecraft WebGui based scoreboard.
 - Physical Box.
 
 - Maybe: (Automated amazon purchase)
