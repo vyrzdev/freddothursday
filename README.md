@@ -11,3 +11,5 @@ Things to do:
 - User Auth (NFC)
 - WebGui based scoreboard.
 - Physical Box.
+
+- Maybe: (Automated amazon purchase)
