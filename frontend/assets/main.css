@@ -1,0 +1,22 @@
+.parent{
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr) 1fr repeat(2, 0.5fr); 
+    grid-template-rows: repeat(1000, 1fr); 
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
+    background-image: url("https://i.ibb.co/QjwC0cb/freddo.jpg");
+    background-repeat: repeat;
+}
+
+#Grid Formatted.
+
+.main{
+    grid-row-start: 10;
+    grid-row-end: 999;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    background-color: gray;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
