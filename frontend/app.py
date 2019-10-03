@@ -3,8 +3,8 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash.dependencies as ddp
 import redis
-redis_server_address = "35.210.227.246"
-redis_server_port = "80"
+redis_server_address = "localhost"
+redis_server_port = "6379"
 conn = redis.Redis(host=redis_server_address, port=redis_server_port)
 app = dash.Dash(__name__)
 #Below Function requires renovation. 
