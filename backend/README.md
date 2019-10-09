@@ -23,7 +23,8 @@
   5) "totalcontribution"
   6) "1.73"
   ```
-* ^^ Backend auth could be done using a combination of hashes and encryption. E.g. Storing encrpyted data under username, storing encryption key under a hash of the pass. Python-style-psuedocode:
+* ^^ Backend auth could be done using a combination of hashes and encryption. E.g. Storing encrpyted data under username, storing encryption key under a hash of the pass. 
+Python-style-psuedocode:
 ```python3
 #USER ENROLLMENT
 username = userinput()
