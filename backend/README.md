@@ -23,3 +23,21 @@
   5) "totalcontribution"
   6) "1.73"
   ```
+* ^^ Backend auth could be done using a combination of hashes and encryption. E.g. Storing encrpyted data under username, storing encryption key under a hash of the pass. Python-style-psuedocode:
+```python3
+#USER ENROLLMENT
+username = userinput()
+hashedpass = hashof(userinput())
+data_to_be_encrypted = {contributions:"$12000", lastpi:"pi-1", filelocation:"/ftp/user1/", apikey:"ajshkasdkjfal7373821mlmdjhdmnsdhffshKSs"}
+encrypteddata, privkey = encrypt(data_to_be_encrypted)
+dict.append(username:encrypteddata)
+dict.append(hashedpass:privkey)
+
+
+#Data Fetch
+username = userinput()
+hashedpass = hashof(userinput())
+encrypted_data = dict[username]
+privkey = dict[hashedpass]
+decrypted_data = decrypt(encrypted_data, privkey)
+```
