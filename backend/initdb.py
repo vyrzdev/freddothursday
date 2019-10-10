@@ -12,7 +12,7 @@ def create12VCo1db():
 	    students.append(line.strip('\n'))
 	
 	#sets the base values for everyone
-	data = {"weekContribution":"0.00", "totalContribution":"0.00"}
+	data = {"weekContribution":"0.00", "totalContribution":"0.00", 'class':'12VCo1'}
 
 	#writes names and data to the database
 	for i in range(0, len(students)):
