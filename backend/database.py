@@ -9,13 +9,17 @@ def create12VCo1db():
 	for line in f:
 	    students.append(line.strip('\n'))
 
-	print(students[0])
+	#print(students[0])
+	
+	data = {"weekContribution":"0.00", "totalContribution":"0.00"}
 
 	for i in range(0, len(students)):
-		r.hset(students[i], 'weekContribution', '0.00')
+		r.hmset(students[i], data)
 
 	#r.hset('Max Stanford-Taylor', 'weekContribution', '0.00')
 
-#print(r.hgetall('Max Stanford-Taylor'))
+create12VCo1db()
+
+print(r.hgetall('Max Stanford-Taylor'))
 
 
