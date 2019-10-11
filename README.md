@@ -13,3 +13,6 @@ Things to do:
 - Physical Box.
 
 - Maybe: (Automated amazon purchase)
+
+
+> [Read the docs here](docs/README.md)
