@@ -1,5 +1,6 @@
 import urllib.parse
 import redis
+import hashlib
 from flask import Flask, request, jsonify
 
 r = redis.Redis('localhost')
@@ -26,37 +27,37 @@ def getClassMembers(classname):
 			members.append(key.decode('utf-8'))
 	return jsonify(members)
 
-@app.route('/getStudentData/<studentname>', methods=['GET'])
-def getStudentData(studentname):
-	studentname = urllib.parse.unquote(studentname)
-	data = r.hgetall(str(studentname))
+@app.route('/getStudentData/<uuid>', methods=['GET'])
+def getStudentData(uuid):
+	data = r.hgetall(str(uuid))
 	data = convertDict(data)
 	return jsonify(data)
 
-@app.route('/updateWeekTotal/<studentname>')
-def updateStudentData(studentname):
+@app.route('/updateWeekTotal/<uuid>')
+def updateStudentData(uuid):
 	if request.args.get('contrib'):
 		weeklyContribToAdd = request.args.get('contrib')
-		student = r.hgetall(studentname)
+		student = r.hgetall(uuid)
 		student[b'weekContribution'] = float(student[b'weekContribution'].decode('utf-8')) + float(weeklyContribToAdd)
 		student[b'totalContribution'] = float(student[b'totalContribution'].decode('utf-8')) + float(weeklyContribToAdd)
-		r.hmset(studentname, student)
+		r.hmset(uuid, student)
 	return 'Contribution updated by: ' + request.args.get('contrib')
 
 #uuid update
-@app.route('/updateUUID/<studentname>', methods=['POST'])
+@app.route('/updateUUID/<uuid>', methods=['POST'])
 def updateStudentUUID(studentname):
-	# There is no implamentation of UUIDs in the database currently
+	# This requires thought and im not doing that rn
 	return None
 
 #register user
-@app.route('/registerUser/', methods=['POST'])
+@app.route('/registerUser/')
 def registerUser():
-	studentname = request.args.get('studentname')
+	studentname = urllib.parse.unquote(request.args.get('studentname'))
+	classs = urllib.parse.unquote(request.args.get('class'))
 	initCon = 0.00
-	userInit = {'weeklyContribution':initCon, 'totalContribution':initCon}
-	r.hmset(studentname, userInit)
-	return 'New user created with key ' + studentname
+	userInit = {'weeklyContribution':initCon, 'totalContribution':initCon, 'studentName':studentname, 'class':classs}
+	r.hmset(hashlib.sha256(bytes(studentname, 'utf-8')).hexdigest(), userInit)
+	return 'New user created with key ' + hashlib.sha256(bytes(studentname, 'utf-8')).hexdigest()
 
 if __name__ == '__main__':
 	app.run(debug=True)

@@ -1,5 +1,6 @@
 import redis
 import random
+import hashlib
 
 r = redis.Redis(host='localhost', port=6379, db=0)
 
@@ -10,13 +11,11 @@ def create12VCo1db():
 	f = open('students.txt', 'r')
 	for line in f:
 	    students.append(line.strip('\n'))
-	
-	#sets the base values for everyone
-	data = {"weekContribution":"0.00", "totalContribution":"0.00", 'class':'12VCo1'}
 
 	#writes names and data to the database
 	for i in range(0, len(students)):
-		r.hmset(students[i], data)
+		data = {"weekContribution":"0.00", "totalContribution":"0.00", 'studentName':students[i] ,'class':'12VCo1'}
+		r.hmset(hashlib.sha256(bytes(students[i], 'utf-8')).hexdigest(), data)
 
 create12VCo1db()
 
