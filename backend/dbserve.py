@@ -1,7 +1,7 @@
 import urllib.parse
 import redis
 import hashlib
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 
 r = redis.Redis('localhost')
 
@@ -25,7 +25,8 @@ def getClassMembers(classname):
 		hash = r.hgetall(key)
 		if hash[b'class'] == classname:
 			members.append(key.decode('utf-8'))
-	return jsonify(members)
+	js = jsonify(members)
+	return js
 
 @app.route('/getStudentData/<uuid>', methods=['GET'])
 def getStudentData(uuid):
