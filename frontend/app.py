@@ -20,15 +20,10 @@ def refresh_table():
     table =[html.Tr(className="table-header", children=[html.Th("Student"), html.Th("Total Contributed")] )] + [html.Tr(className="table-row", children = [html.Td(str(x[0])), html.Td(str(x[1]))]) for x in dataframe]
     return table
 
-#tableobject = [html.Tr(className="table-header", children=[html.Th("Student"),html.Th("Total Contribution")]),
-#        html.Tr(className="table-row", children=[html.Td("Max"), html.Td("0.00")]),
-#        html.Tr(className="table-row", children=[html.Td("Ben"), html.Td("0.50")])
-#    ]
-
 #app.layout, is an attribute of the webpage which stores different html objects as a list, data inside the children variables of each
 #html object can be modified using callbacks which take input from interactive components and output to the children vars.
 app.layout = html.Div(id="parent", className="parent", children=[
-        html.Div(className = "main1", id="main"),
+        html.Div(className = "main", id="main"),
         dcc.Interval(id="interval-component", interval=(1*1000), n_intervals=0)
     ])
 

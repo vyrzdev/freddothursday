@@ -10,7 +10,7 @@
 
 #Grid Formatted.
 
-.main1{
+.main{
     grid-row-start: 10;
     grid-row-end: 999;
     grid-column-start: 2;
